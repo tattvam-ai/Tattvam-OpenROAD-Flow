@@ -1,0 +1,694 @@
+# export DESIGN_NICKNAME=top_earlgrey
+# export DESIGN_NAME=top_earlgrey
+# export PLATFORM=sky130hd
+
+# # export VERILOG_FILES=./designs/src/top_earlgrey/top_earlgrey.v
+# export SYNTH_HDL_FRONTEND=slang
+
+# BASE_PATH = /Tattvam_Open_Source/OpenROAD-flow-scripts/flow/designs/src/top_earlgrey/syn-icarus/src
+# VERILOG_FILES = $(foreach dir,$(wildcard $(BASE_PATH)/*/rtl), $(wildcard $(dir)/*.sv))
+
+
+# export SDC_FILE=$(DESIGN_HOME)/$(PLATFORM)/$(DESIGN_NICKNAME)/constraint.sdc
+# export SYNTH_HIERARCHICAL=1
+# export RTLMP_FLOW=1
+
+# # Adders degrade ibex setup repair
+# export CORE_UTILIZATION=45
+# export PLACE_DENSITY_LB_ADDON=0.2
+# export TNS_END_PERCENT=100
+
+# export FASTROUTE_TCL=$(DESIGN_HOME)/$(PLATFORM)/$(DESIGN_NICKNAME)/fastroute.tcl
+# export REMOVE_ABC_BUFFERS=1
+
+# export CTS_CLUSTER_SIZE=20
+# export CTS_CLUSTER_DIAMETER=50
+
+
+export DESIGN_NICKNAME=top_earlgrey
+export DESIGN_NAME=top_earlgrey
+export PLATFORM=sky130hd
+ 
+export SYNTH_HDL_FRONTEND=slang
+export SYNTH_HIERARCHICAL=1
+
+BASE_PATH = ./designs/src/top_earlgrey
+# export VERILOG_FILES=$(sort $(wildcard $(BASE_PATH)/*/rtl/*.sv))
+# export VERILOG_FILES=$(shell find $(BASE_PATH) -name "*.sv" -path "*/rtl/*" -print0 | xargs -0 echo)
+
+export VERILOG_INCLUDE_DIRS := \
+  $(BASE_PATH)/include/lowrisc_dv_dv_fcov_macros_0 \
+  $(BASE_PATH)/include/lowrisc_prim_assert_0.1 \
+  $(BASE_PATH)/include/lowrisc_prim_macros_0.1 \
+  $(BASE_PATH)/include/lowrisc_prim_secded_0.1 \
+  $(BASE_PATH)/include/lowrisc_prim_util_get_scramble_params_0 \
+  $(BASE_PATH)/include/lowrisc_prim_util_memload_0 \
+  $(BASE_PATH)/include/lowrisc_prim_fifo_0
+
+export VERILOG_FILES := \
+$(BASE_PATH)/jtag_id_pkg.sv \
+$(BASE_PATH)/top_pkg.sv \
+$(BASE_PATH)/otp_ctrl_macro_pkg.sv \
+$(BASE_PATH)/ibex_pkg.sv \
+$(BASE_PATH)/entropy_src_ack_sm_pkg.sv \
+$(BASE_PATH)/entropy_src_main_sm_pkg.sv \
+$(BASE_PATH)/flash_ctrl_pkg.sv \
+$(BASE_PATH)/i2c_pkg.sv \
+$(BASE_PATH)/jtag_pkg.sv \
+$(BASE_PATH)/otp_macro_pkg.sv \
+$(BASE_PATH)/rv_timer_reg_pkg.sv \
+$(BASE_PATH)/spi_device_reg_pkg.sv \
+$(BASE_PATH)/spi_device_pkg.sv \
+$(BASE_PATH)/usbdev_pkg.sv \
+$(BASE_PATH)/prim_cipher_pkg.sv \
+$(BASE_PATH)/prim_crc32.sv \
+$(BASE_PATH)/prim_flop.sv \
+$(BASE_PATH)/prim_flop_no_rst.sv \
+$(BASE_PATH)/prim_ram_1p_pkg.sv \
+$(BASE_PATH)/prim_ram_2p_pkg.sv \
+$(BASE_PATH)/prim_rom_pkg.sv \
+$(BASE_PATH)/prim_usb_diff_rx.sv \
+$(BASE_PATH)/prim_xnor2.sv \
+$(BASE_PATH)/prim_xor2.sv \
+$(BASE_PATH)/prim_pad_wrapper_pkg.sv \
+$(BASE_PATH)/prim_pkg.sv \
+$(BASE_PATH)/prim_secded_pkg.sv \
+$(BASE_PATH)/prim_secded_22_16_dec.sv \
+$(BASE_PATH)/prim_secded_22_16_enc.sv \
+$(BASE_PATH)/prim_secded_28_22_dec.sv \
+$(BASE_PATH)/prim_secded_28_22_enc.sv \
+$(BASE_PATH)/prim_secded_39_32_dec.sv \
+$(BASE_PATH)/prim_secded_39_32_enc.sv \
+$(BASE_PATH)/prim_secded_64_57_dec.sv \
+$(BASE_PATH)/prim_secded_64_57_enc.sv \
+$(BASE_PATH)/prim_secded_72_64_dec.sv \
+$(BASE_PATH)/prim_secded_72_64_enc.sv \
+$(BASE_PATH)/prim_secded_hamming_22_16_dec.sv \
+$(BASE_PATH)/prim_secded_hamming_22_16_enc.sv \
+$(BASE_PATH)/prim_secded_hamming_39_32_dec.sv \
+$(BASE_PATH)/prim_secded_hamming_39_32_enc.sv \
+$(BASE_PATH)/prim_secded_hamming_72_64_dec.sv \
+$(BASE_PATH)/prim_secded_hamming_72_64_enc.sv \
+$(BASE_PATH)/prim_secded_hamming_76_68_dec.sv \
+$(BASE_PATH)/prim_secded_hamming_76_68_enc.sv \
+$(BASE_PATH)/prim_secded_inv_22_16_dec.sv \
+$(BASE_PATH)/prim_secded_inv_22_16_enc.sv \
+$(BASE_PATH)/prim_secded_inv_28_22_dec.sv \
+$(BASE_PATH)/prim_secded_inv_28_22_enc.sv \
+$(BASE_PATH)/prim_secded_inv_39_32_dec.sv \
+$(BASE_PATH)/prim_secded_inv_39_32_enc.sv \
+$(BASE_PATH)/prim_secded_inv_64_57_dec.sv \
+$(BASE_PATH)/prim_secded_inv_64_57_enc.sv \
+$(BASE_PATH)/prim_secded_inv_72_64_dec.sv \
+$(BASE_PATH)/prim_secded_inv_72_64_enc.sv \
+$(BASE_PATH)/prim_secded_inv_hamming_22_16_dec.sv \
+$(BASE_PATH)/prim_secded_inv_hamming_22_16_enc.sv \
+$(BASE_PATH)/prim_secded_inv_hamming_39_32_dec.sv \
+$(BASE_PATH)/prim_secded_inv_hamming_39_32_enc.sv \
+$(BASE_PATH)/prim_secded_inv_hamming_72_64_dec.sv \
+$(BASE_PATH)/prim_secded_inv_hamming_72_64_enc.sv \
+$(BASE_PATH)/prim_secded_inv_hamming_76_68_dec.sv \
+$(BASE_PATH)/prim_secded_inv_hamming_76_68_enc.sv \
+$(BASE_PATH)/prim_sha2_pkg.sv \
+$(BASE_PATH)/prim_and2.sv \
+$(BASE_PATH)/prim_buf.sv \
+$(BASE_PATH)/prim_clock_buf.sv \
+$(BASE_PATH)/prim_clock_gating.sv \
+$(BASE_PATH)/prim_clock_mux2.sv \
+$(BASE_PATH)/prim_clock_inv.sv \
+$(BASE_PATH)/top_earlgrey_pkg.sv \
+$(BASE_PATH)/ibex_icache.sv \
+$(BASE_PATH)/rv_core_ibex_pkg.sv \
+$(BASE_PATH)/prim_blanker.sv \
+$(BASE_PATH)/prim_cdc_rand_delay.sv \
+$(BASE_PATH)/prim_subst_perm.sv \
+$(BASE_PATH)/prim_present.sv \
+$(BASE_PATH)/prim_prince.sv \
+$(BASE_PATH)/prim_count_pkg.sv \
+$(BASE_PATH)/prim_count.sv \
+$(BASE_PATH)/prim_clock_div.sv \
+$(BASE_PATH)/prim_ram_1p.sv \
+$(BASE_PATH)/prim_ram_1r1w.sv \
+$(BASE_PATH)/prim_ram_2p.sv \
+$(BASE_PATH)/prim_rom.sv \
+$(BASE_PATH)/prim_gf_mult.sv \
+$(BASE_PATH)/prim_lfsr.sv \
+$(BASE_PATH)/prim_max_tree.sv \
+$(BASE_PATH)/prim_msb_extend.sv \
+$(BASE_PATH)/prim_mubi_pkg.sv \
+$(BASE_PATH)/prim_dom_and_2share.sv \
+$(BASE_PATH)/prim_sec_anchor_buf.sv \
+$(BASE_PATH)/prim_sec_anchor_flop.sv \
+$(BASE_PATH)/prim_sha2_pad.sv \
+$(BASE_PATH)/prim_sha2.sv \
+$(BASE_PATH)/prim_sha2_32.sv \
+$(BASE_PATH)/prim_sparse_fsm_flop.sv \
+$(BASE_PATH)/prim_sum_tree.sv \
+$(BASE_PATH)/prim_util_pkg.sv \
+$(BASE_PATH)/prim_pad_attr.sv \
+$(BASE_PATH)/prim_pad_wrapper.sv \
+$(BASE_PATH)/prim_xoshiro256pp.sv \
+$(BASE_PATH)/ibex_pmp_reset_pkg.sv \
+$(BASE_PATH)/entropy_src_pkg.sv \
+$(BASE_PATH)/lc_ctrl_state_pkg.sv \
+$(BASE_PATH)/prim_double_lfsr.sv \
+$(BASE_PATH)/prim_flop_2sync.sv \
+$(BASE_PATH)/prim_flop_en.sv \
+$(BASE_PATH)/prim_leading_one_ppc.sv \
+$(BASE_PATH)/prim_mubi4_sender.sv \
+$(BASE_PATH)/prim_mubi4_sync.sv \
+$(BASE_PATH)/prim_mubi4_dec.sv \
+$(BASE_PATH)/prim_mubi8_sender.sv \
+$(BASE_PATH)/prim_mubi8_sync.sv \
+$(BASE_PATH)/prim_mubi8_dec.sv \
+$(BASE_PATH)/prim_mubi12_sender.sv \
+$(BASE_PATH)/prim_mubi12_sync.sv \
+$(BASE_PATH)/prim_mubi12_dec.sv \
+$(BASE_PATH)/prim_mubi16_sender.sv \
+$(BASE_PATH)/prim_mubi16_sync.sv \
+$(BASE_PATH)/prim_mubi16_dec.sv \
+$(BASE_PATH)/prim_mubi20_sender.sv \
+$(BASE_PATH)/prim_mubi20_sync.sv \
+$(BASE_PATH)/prim_mubi20_dec.sv \
+$(BASE_PATH)/prim_mubi24_sender.sv \
+$(BASE_PATH)/prim_mubi24_sync.sv \
+$(BASE_PATH)/prim_mubi24_dec.sv \
+$(BASE_PATH)/prim_mubi28_sender.sv \
+$(BASE_PATH)/prim_mubi28_sync.sv \
+$(BASE_PATH)/prim_mubi28_dec.sv \
+$(BASE_PATH)/prim_mubi32_sender.sv \
+$(BASE_PATH)/prim_mubi32_sync.sv \
+$(BASE_PATH)/prim_mubi32_dec.sv \
+$(BASE_PATH)/prim_onehot_enc.sv \
+$(BASE_PATH)/prim_onehot_mux.sv \
+$(BASE_PATH)/prim_onehot_check.sv \
+$(BASE_PATH)/prim_ram_1p_adv.sv \
+$(BASE_PATH)/prim_ram_1r1w_async_adv.sv \
+$(BASE_PATH)/prim_ram_2p_async_adv.sv \
+$(BASE_PATH)/prim_rom_adv.sv \
+$(BASE_PATH)/prim_trivium_pkg.sv \
+$(BASE_PATH)/prim_trivium.sv \
+$(BASE_PATH)/tlul_pkg.sv \
+$(BASE_PATH)/top_racl_pkg.sv \
+$(BASE_PATH)/alert_handler_reg_pkg.sv \
+$(BASE_PATH)/alert_handler_pkg.sv \
+$(BASE_PATH)/clkmgr_pkg.sv \
+$(BASE_PATH)/pinmux_reg_pkg.sv \
+$(BASE_PATH)/pinmux_pkg.sv \
+$(BASE_PATH)/pwrmgr_reg_pkg.sv \
+$(BASE_PATH)/pwrmgr_pkg.sv \
+$(BASE_PATH)/ibex_alu.sv \
+$(BASE_PATH)/ibex_branch_predict.sv \
+$(BASE_PATH)/ibex_compressed_decoder.sv \
+$(BASE_PATH)/ibex_controller.sv \
+$(BASE_PATH)/ibex_cs_registers.sv \
+$(BASE_PATH)/ibex_csr.sv \
+$(BASE_PATH)/ibex_counter.sv \
+$(BASE_PATH)/ibex_decoder.sv \
+$(BASE_PATH)/ibex_ex_block.sv \
+$(BASE_PATH)/ibex_fetch_fifo.sv \
+$(BASE_PATH)/ibex_id_stage.sv \
+$(BASE_PATH)/ibex_if_stage.sv \
+$(BASE_PATH)/ibex_load_store_unit.sv \
+$(BASE_PATH)/ibex_multdiv_fast.sv \
+$(BASE_PATH)/ibex_multdiv_slow.sv \
+$(BASE_PATH)/ibex_prefetch_buffer.sv \
+$(BASE_PATH)/ibex_pmp.sv \
+$(BASE_PATH)/ibex_wb_stage.sv \
+$(BASE_PATH)/ibex_dummy_instr.sv \
+$(BASE_PATH)/ibex_core.sv \
+$(BASE_PATH)/lc_ctrl_reg_pkg.sv \
+$(BASE_PATH)/lc_ctrl_pkg.sv \
+$(BASE_PATH)/rom_ctrl_pkg.sv \
+$(BASE_PATH)/rom_ctrl_reg_pkg.sv \
+$(BASE_PATH)/prim_arbiter_fixed.sv \
+$(BASE_PATH)/prim_arbiter_ppc.sv \
+$(BASE_PATH)/prim_arbiter_tree.sv \
+$(BASE_PATH)/prim_arbiter_tree_dup.sv \
+$(BASE_PATH)/prim_diff_decode.sv \
+$(BASE_PATH)/prim_edge_detector.sv \
+$(BASE_PATH)/prim_fifo_async_sram_adapter.sv \
+$(BASE_PATH)/prim_fifo_async_simple.sv \
+$(BASE_PATH)/prim_fifo_async.sv \
+$(BASE_PATH)/prim_fifo_sync.sv \
+$(BASE_PATH)/prim_fifo_sync_cnt.sv \
+$(BASE_PATH)/prim_ram_1p_scr.sv \
+$(BASE_PATH)/prim_reg_we_check.sv \
+$(BASE_PATH)/prim_rst_sync.sv \
+$(BASE_PATH)/prim_subreg_pkg.sv \
+$(BASE_PATH)/prim_reg_cdc.sv \
+$(BASE_PATH)/prim_reg_cdc_arb.sv \
+$(BASE_PATH)/prim_subreg.sv \
+$(BASE_PATH)/prim_subreg_arb.sv \
+$(BASE_PATH)/prim_subreg_ext.sv \
+$(BASE_PATH)/prim_subreg_shadow.sv \
+$(BASE_PATH)/tlul_data_integ_enc.sv \
+$(BASE_PATH)/tlul_data_integ_dec.sv \
+$(BASE_PATH)/tlul_cmd_intg_gen.sv \
+$(BASE_PATH)/tlul_cmd_intg_chk.sv \
+$(BASE_PATH)/tlul_rsp_intg_gen.sv \
+$(BASE_PATH)/tlul_rsp_intg_chk.sv \
+$(BASE_PATH)/rstmgr_reg_pkg.sv \
+$(BASE_PATH)/rstmgr_pkg.sv \
+$(BASE_PATH)/ibex_register_file_ff.sv \
+$(BASE_PATH)/ibex_register_file_fpga.sv \
+$(BASE_PATH)/ibex_register_file_latch.sv \
+$(BASE_PATH)/ibex_lockstep.sv \
+$(BASE_PATH)/ibex_top.sv \
+$(BASE_PATH)/csrng_reg_pkg.sv \
+$(BASE_PATH)/csrng_pkg.sv \
+$(BASE_PATH)/otp_ctrl_pkg.sv \
+$(BASE_PATH)/prim_alert_pkg.sv \
+$(BASE_PATH)/prim_alert_receiver.sv \
+$(BASE_PATH)/prim_alert_sender.sv \
+$(BASE_PATH)/prim_esc_pkg.sv \
+$(BASE_PATH)/prim_esc_receiver.sv \
+$(BASE_PATH)/prim_esc_sender.sv \
+$(BASE_PATH)/prim_lc_dec.sv \
+$(BASE_PATH)/prim_lc_sender.sv \
+$(BASE_PATH)/prim_lc_sync.sv \
+$(BASE_PATH)/prim_racl_error_arb.sv \
+$(BASE_PATH)/ast_pkg.sv \
+$(BASE_PATH)/tlul_fifo_sync.sv \
+$(BASE_PATH)/tlul_fifo_async.sv \
+$(BASE_PATH)/tlul_assert.sv \
+$(BASE_PATH)/tlul_err.sv \
+$(BASE_PATH)/tlul_assert_multiple.sv \
+$(BASE_PATH)/otp_ctrl_reg_pkg.sv \
+$(BASE_PATH)/otp_ctrl_top_specific_pkg.sv \
+$(BASE_PATH)/otp_ctrl_part_pkg.sv \
+$(BASE_PATH)/rstmgr_reg_top.sv \
+$(BASE_PATH)/rv_plic_gateway.sv \
+$(BASE_PATH)/rv_plic_target.sv \
+$(BASE_PATH)/edn_reg_pkg.sv \
+$(BASE_PATH)/edn_pkg.sv \
+$(BASE_PATH)/otbn_reg_pkg.sv \
+$(BASE_PATH)/otbn_pkg.sv \
+$(BASE_PATH)/otp_macro_reg_pkg.sv \
+$(BASE_PATH)/otp_macro_prim_reg_top.sv \
+$(BASE_PATH)/otp_macro.sv \
+$(BASE_PATH)/sram_ctrl_reg_pkg.sv \
+$(BASE_PATH)/sram_ctrl_pkg.sv \
+$(BASE_PATH)/prim_clock_gating_sync.sv \
+$(BASE_PATH)/prim_sram_arbiter.sv \
+$(BASE_PATH)/prim_slicer.sv \
+$(BASE_PATH)/prim_sync_reqack.sv \
+$(BASE_PATH)/prim_sync_reqack_data.sv \
+$(BASE_PATH)/prim_sync_slow_fast.sv \
+$(BASE_PATH)/prim_keccak.sv \
+$(BASE_PATH)/prim_packer.sv \
+$(BASE_PATH)/prim_packer_fifo.sv \
+$(BASE_PATH)/prim_gate_gen.sv \
+$(BASE_PATH)/prim_pulse_sync.sv \
+$(BASE_PATH)/prim_filter.sv \
+$(BASE_PATH)/prim_filter_ctr.sv \
+$(BASE_PATH)/prim_intr_hw.sv \
+$(BASE_PATH)/prim_lc_or_hardened.sv \
+$(BASE_PATH)/tlul_adapter_reg.sv \
+$(BASE_PATH)/tlul_sram_byte.sv \
+$(BASE_PATH)/tlul_adapter_sram.sv \
+$(BASE_PATH)/tlul_lc_gate.sv \
+$(BASE_PATH)/tlul_request_loopback.sv \
+$(BASE_PATH)/tlul_err_resp.sv \
+$(BASE_PATH)/tlul_socket_1n.sv \
+$(BASE_PATH)/tlul_socket_m1.sv \
+$(BASE_PATH)/sram2tlul.sv \
+$(BASE_PATH)/flash_ctrl_reg_pkg.sv \
+$(BASE_PATH)/flash_ctrl_top_specific_pkg.sv \
+$(BASE_PATH)/flash_phy_pkg.sv \
+$(BASE_PATH)/rstmgr_cnsty_chk.sv \
+$(BASE_PATH)/keymgr_reg_pkg.sv \
+$(BASE_PATH)/keymgr_pkg.sv \
+$(BASE_PATH)/usb_consts_pkg.sv \
+$(BASE_PATH)/usb_fs_nb_in_pe.sv \
+$(BASE_PATH)/usb_fs_nb_out_pe.sv \
+$(BASE_PATH)/usb_fs_nb_pe.sv \
+$(BASE_PATH)/usb_fs_rx.sv \
+$(BASE_PATH)/usb_fs_tx.sv \
+$(BASE_PATH)/usb_fs_tx_mux.sv \
+$(BASE_PATH)/prim_edn_req.sv \
+$(BASE_PATH)/prim_clock_meas.sv \
+$(BASE_PATH)/prim_clock_timeout.sv \
+$(BASE_PATH)/tlul_adapter_host.sv \
+$(BASE_PATH)/tlul_adapter_racl.sv \
+$(BASE_PATH)/tlul_adapter_reg_racl.sv \
+$(BASE_PATH)/debug_rom.sv \
+$(BASE_PATH)/debug_rom_one_scratch.sv \
+$(BASE_PATH)/dm_pkg.sv \
+$(BASE_PATH)/dm_sba.sv \
+$(BASE_PATH)/dm_csrs.sv \
+$(BASE_PATH)/dm_mem.sv \
+$(BASE_PATH)/dmi_cdc.sv \
+$(BASE_PATH)/dmi_jtag.sv \
+$(BASE_PATH)/dmi_jtag_tap.sv \
+$(BASE_PATH)/dm_top.sv \
+$(BASE_PATH)/flash_ctrl_prim_reg_top.sv \
+$(BASE_PATH)/tlul_adapter_dmi.sv \
+$(BASE_PATH)/tlul_adapter_sram_racl.sv \
+$(BASE_PATH)/tlul_jtag_dtm.sv \
+$(BASE_PATH)/prim_generic_flash_bank.sv \
+$(BASE_PATH)/prim_flash.sv \
+$(BASE_PATH)/alert_handler_reg_top.sv \
+$(BASE_PATH)/clkmgr_reg_pkg.sv \
+$(BASE_PATH)/clkmgr_reg_top.sv \
+$(BASE_PATH)/flash_ctrl_core_reg_top.sv \
+$(BASE_PATH)/gpio_pkg.sv \
+$(BASE_PATH)/gpio_reg_pkg.sv \
+$(BASE_PATH)/gpio_reg_top.sv \
+$(BASE_PATH)/gpio.sv \
+$(BASE_PATH)/otp_ctrl_core_reg_top.sv \
+$(BASE_PATH)/otp_ctrl_ecc_reg.sv \
+$(BASE_PATH)/otp_ctrl_scrmbl.sv \
+$(BASE_PATH)/otp_ctrl_lfsr_timer.sv \
+$(BASE_PATH)/otp_ctrl_part_unbuf.sv \
+$(BASE_PATH)/otp_ctrl_part_buf.sv \
+$(BASE_PATH)/otp_ctrl_dai.sv \
+$(BASE_PATH)/otp_ctrl_kdi.sv \
+$(BASE_PATH)/otp_ctrl_lci.sv \
+$(BASE_PATH)/otp_ctrl.sv \
+$(BASE_PATH)/pinmux_reg_top.sv \
+$(BASE_PATH)/pwm_reg_pkg.sv \
+$(BASE_PATH)/pwm_reg_top.sv \
+$(BASE_PATH)/pwm_chan.sv \
+$(BASE_PATH)/pwm_core.sv \
+$(BASE_PATH)/pwm.sv \
+$(BASE_PATH)/pwrmgr_reg_top.sv \
+$(BASE_PATH)/rstmgr_ctrl.sv \
+$(BASE_PATH)/rstmgr_por.sv \
+$(BASE_PATH)/rstmgr_crash_info.sv \
+$(BASE_PATH)/rstmgr_leaf_rst.sv \
+$(BASE_PATH)/rstmgr.sv \
+$(BASE_PATH)/rv_core_ibex_reg_pkg.sv \
+$(BASE_PATH)/rv_core_ibex_cfg_reg_top.sv \
+$(BASE_PATH)/rv_core_ibex_addr_trans.sv \
+$(BASE_PATH)/rv_core_ibex.sv \
+$(BASE_PATH)/rv_plic_reg_pkg.sv \
+$(BASE_PATH)/rv_plic_reg_top.sv \
+$(BASE_PATH)/rv_plic.sv \
+$(BASE_PATH)/adc_ctrl_pkg.sv \
+$(BASE_PATH)/adc_ctrl_reg_pkg.sv \
+$(BASE_PATH)/adc_ctrl_reg_top.sv \
+$(BASE_PATH)/adc_ctrl_fsm.sv \
+$(BASE_PATH)/adc_ctrl_intr.sv \
+$(BASE_PATH)/adc_ctrl_core.sv \
+$(BASE_PATH)/adc_ctrl.sv \
+$(BASE_PATH)/aes_reg_pkg.sv \
+$(BASE_PATH)/aes_pkg.sv \
+$(BASE_PATH)/aes_reg_top.sv \
+$(BASE_PATH)/aes_ctrl_reg_shadowed.sv \
+$(BASE_PATH)/aes_core.sv \
+$(BASE_PATH)/aes_ctr.sv \
+$(BASE_PATH)/aes_ctr_fsm.sv \
+$(BASE_PATH)/aes_ctr_fsm_p.sv \
+$(BASE_PATH)/aes_ctr_fsm_n.sv \
+$(BASE_PATH)/aes_control.sv \
+$(BASE_PATH)/aes_control_fsm.sv \
+$(BASE_PATH)/aes_control_fsm_p.sv \
+$(BASE_PATH)/aes_control_fsm_n.sv \
+$(BASE_PATH)/aes_reg_status.sv \
+$(BASE_PATH)/aes_sel_buf_chk.sv \
+$(BASE_PATH)/aes_cipher_core.sv \
+$(BASE_PATH)/aes_cipher_control.sv \
+$(BASE_PATH)/aes_cipher_control_fsm.sv \
+$(BASE_PATH)/aes_cipher_control_fsm_p.sv \
+$(BASE_PATH)/aes_cipher_control_fsm_n.sv \
+$(BASE_PATH)/aes_sub_bytes.sv \
+$(BASE_PATH)/aes_sbox.sv \
+$(BASE_PATH)/aes_sbox_lut.sv \
+$(BASE_PATH)/aes_sbox_canright_pkg.sv \
+$(BASE_PATH)/aes_sbox_canright.sv \
+$(BASE_PATH)/aes_sbox_canright_masked_noreuse.sv \
+$(BASE_PATH)/aes_sbox_canright_masked.sv \
+$(BASE_PATH)/aes_sbox_dom.sv \
+$(BASE_PATH)/aes_shift_rows.sv \
+$(BASE_PATH)/aes_mix_columns.sv \
+$(BASE_PATH)/aes_mix_single_column.sv \
+$(BASE_PATH)/aes_key_expand.sv \
+$(BASE_PATH)/aes_prng_clearing.sv \
+$(BASE_PATH)/aes_prng_masking.sv \
+$(BASE_PATH)/aes.sv \
+$(BASE_PATH)/aon_timer_reg_pkg.sv \
+$(BASE_PATH)/aon_timer_reg_top.sv \
+$(BASE_PATH)/aon_timer_core.sv \
+$(BASE_PATH)/aon_timer.sv \
+$(BASE_PATH)/edn_reg_top.sv \
+$(BASE_PATH)/edn_ack_sm.sv \
+$(BASE_PATH)/edn_main_sm.sv \
+$(BASE_PATH)/edn_core.sv \
+$(BASE_PATH)/edn.sv \
+$(BASE_PATH)/hmac_reg_pkg.sv \
+$(BASE_PATH)/hmac_reg_top.sv \
+$(BASE_PATH)/hmac_core.sv \
+$(BASE_PATH)/hmac.sv \
+$(BASE_PATH)/i2c_reg_pkg.sv \
+$(BASE_PATH)/i2c_reg_top.sv \
+$(BASE_PATH)/i2c_fifo_sync_sram_adapter.sv \
+$(BASE_PATH)/i2c_fifos.sv \
+$(BASE_PATH)/i2c_core.sv \
+$(BASE_PATH)/i2c_bus_monitor.sv \
+$(BASE_PATH)/i2c_controller_fsm.sv \
+$(BASE_PATH)/i2c_target_fsm.sv \
+$(BASE_PATH)/i2c.sv \
+$(BASE_PATH)/otbn_controller.sv \
+$(BASE_PATH)/otbn_decoder.sv \
+$(BASE_PATH)/otbn_predecode.sv \
+$(BASE_PATH)/otbn_instruction_fetch.sv \
+$(BASE_PATH)/otbn_rf_base.sv \
+$(BASE_PATH)/otbn_rf_bignum.sv \
+$(BASE_PATH)/otbn_rf_base_ff.sv \
+$(BASE_PATH)/otbn_rf_bignum_ff.sv \
+$(BASE_PATH)/otbn_rf_base_fpga.sv \
+$(BASE_PATH)/otbn_rf_bignum_fpga.sv \
+$(BASE_PATH)/otbn_lsu.sv \
+$(BASE_PATH)/otbn_alu_base.sv \
+$(BASE_PATH)/otbn_alu_bignum.sv \
+$(BASE_PATH)/otbn_mac_bignum.sv \
+$(BASE_PATH)/otbn_loop_controller.sv \
+$(BASE_PATH)/otbn_stack.sv \
+$(BASE_PATH)/otbn_rnd.sv \
+$(BASE_PATH)/otbn_start_stop_control.sv \
+$(BASE_PATH)/otbn_core.sv \
+$(BASE_PATH)/otbn_reg_top.sv \
+$(BASE_PATH)/otbn_scramble_ctrl.sv \
+$(BASE_PATH)/otbn.sv \
+$(BASE_PATH)/pattgen_reg_pkg.sv \
+$(BASE_PATH)/pattgen_reg_top.sv \
+$(BASE_PATH)/pattgen_ctrl_pkg.sv \
+$(BASE_PATH)/pattgen_core.sv \
+$(BASE_PATH)/pattgen_chan.sv \
+$(BASE_PATH)/pattgen.sv \
+$(BASE_PATH)/rv_dm_reg_pkg.sv \
+$(BASE_PATH)/rv_dm_regs_reg_top.sv \
+$(BASE_PATH)/rv_dm_dbg_reg_top.sv \
+$(BASE_PATH)/rv_dm_dmi_gate.sv \
+$(BASE_PATH)/rv_dm_pkg.sv \
+$(BASE_PATH)/rv_dm.sv \
+$(BASE_PATH)/rv_timer_reg_top.sv \
+$(BASE_PATH)/timer_core.sv \
+$(BASE_PATH)/rv_timer.sv \
+$(BASE_PATH)/sha3_pkg.sv \
+$(BASE_PATH)/keccak_round.sv \
+$(BASE_PATH)/keccak_2share.sv \
+$(BASE_PATH)/sha3pad.sv \
+$(BASE_PATH)/sha3.sv \
+$(BASE_PATH)/spi_device_reg_top.sv \
+$(BASE_PATH)/spi_cmdparse.sv \
+$(BASE_PATH)/spid_dpram.sv \
+$(BASE_PATH)/spid_readsram.sv \
+$(BASE_PATH)/spid_readbuffer.sv \
+$(BASE_PATH)/spi_readcmd.sv \
+$(BASE_PATH)/spi_passthrough.sv \
+$(BASE_PATH)/spid_status.sv \
+$(BASE_PATH)/spid_jedec.sv \
+$(BASE_PATH)/spid_addr_4b.sv \
+$(BASE_PATH)/spid_fifo2sram_adapter.sv \
+$(BASE_PATH)/spid_csb_sync.sv \
+$(BASE_PATH)/spid_upload.sv \
+$(BASE_PATH)/spi_tpm.sv \
+$(BASE_PATH)/spi_s2p.sv \
+$(BASE_PATH)/spi_p2s.sv \
+$(BASE_PATH)/spi_device.sv \
+$(BASE_PATH)/spi_host_reg_pkg.sv \
+$(BASE_PATH)/spi_host_cmd_pkg.sv \
+$(BASE_PATH)/spi_host_shift_register.sv \
+$(BASE_PATH)/spi_host_byte_select.sv \
+$(BASE_PATH)/spi_host_byte_merge.sv \
+$(BASE_PATH)/spi_host_fsm.sv \
+$(BASE_PATH)/spi_host_core.sv \
+$(BASE_PATH)/spi_host_command_queue.sv \
+$(BASE_PATH)/spi_host_data_fifos.sv \
+$(BASE_PATH)/spi_host_reg_top.sv \
+$(BASE_PATH)/spi_host_window.sv \
+$(BASE_PATH)/spi_host.sv \
+$(BASE_PATH)/sram_ctrl_regs_reg_top.sv \
+$(BASE_PATH)/sram_ctrl.sv \
+$(BASE_PATH)/sysrst_ctrl_reg_pkg.sv \
+$(BASE_PATH)/sysrst_ctrl_reg_top.sv \
+$(BASE_PATH)/sysrst_ctrl_pkg.sv \
+$(BASE_PATH)/sysrst_ctrl_autoblock.sv \
+$(BASE_PATH)/sysrst_ctrl_comboact.sv \
+$(BASE_PATH)/sysrst_ctrl_pin.sv \
+$(BASE_PATH)/sysrst_ctrl_keyintr.sv \
+$(BASE_PATH)/sysrst_ctrl_detect.sv \
+$(BASE_PATH)/sysrst_ctrl_combo.sv \
+$(BASE_PATH)/sysrst_ctrl_ulp.sv \
+$(BASE_PATH)/sysrst_ctrl_intr.sv \
+$(BASE_PATH)/sysrst_ctrl.sv \
+$(BASE_PATH)/uart_reg_pkg.sv \
+$(BASE_PATH)/uart_reg_top.sv \
+$(BASE_PATH)/uart_rx.sv \
+$(BASE_PATH)/uart_tx.sv \
+$(BASE_PATH)/uart_core.sv \
+$(BASE_PATH)/uart.sv \
+$(BASE_PATH)/usbdev_reg_pkg.sv \
+$(BASE_PATH)/usbdev_reg_top.sv \
+$(BASE_PATH)/usbdev_usbif.sv \
+$(BASE_PATH)/usbdev_linkstate.sv \
+$(BASE_PATH)/usbdev_iomux.sv \
+$(BASE_PATH)/usbdev_counter.sv \
+$(BASE_PATH)/usbdev_aon_wake.sv \
+$(BASE_PATH)/usbdev.sv \
+$(BASE_PATH)/sensor_ctrl_reg_pkg.sv \
+$(BASE_PATH)/sensor_ctrl_reg_top.sv \
+$(BASE_PATH)/tl_main_pkg.sv \
+$(BASE_PATH)/xbar_main.sv \
+$(BASE_PATH)/tl_peri_pkg.sv \
+$(BASE_PATH)/xbar_peri.sv \
+$(BASE_PATH)/alert_handler_reg_wrap.sv \
+$(BASE_PATH)/alert_handler_lpg_ctrl.sv \
+$(BASE_PATH)/alert_handler_class.sv \
+$(BASE_PATH)/alert_handler_ping_timer.sv \
+$(BASE_PATH)/alert_handler_esc_timer.sv \
+$(BASE_PATH)/alert_handler_accu.sv \
+$(BASE_PATH)/alert_handler.sv \
+$(BASE_PATH)/clkmgr.sv \
+$(BASE_PATH)/clkmgr_byp.sv \
+$(BASE_PATH)/clkmgr_clk_status.sv \
+$(BASE_PATH)/clkmgr_meas_chk.sv \
+$(BASE_PATH)/clkmgr_root_ctrl.sv \
+$(BASE_PATH)/clkmgr_trans.sv \
+$(BASE_PATH)/flash_ctrl.sv \
+$(BASE_PATH)/flash_ctrl_erase.sv \
+$(BASE_PATH)/flash_ctrl_prog.sv \
+$(BASE_PATH)/flash_ctrl_rd.sv \
+$(BASE_PATH)/flash_ctrl_arb.sv \
+$(BASE_PATH)/flash_ctrl_info_cfg.sv \
+$(BASE_PATH)/flash_ctrl_lcmgr.sv \
+$(BASE_PATH)/flash_ctrl_region_cfg.sv \
+$(BASE_PATH)/flash_mp.sv \
+$(BASE_PATH)/flash_mp_data_region_sel.sv \
+$(BASE_PATH)/flash_phy.sv \
+$(BASE_PATH)/flash_phy_core.sv \
+$(BASE_PATH)/flash_phy_rd.sv \
+$(BASE_PATH)/flash_phy_rd_buffers.sv \
+$(BASE_PATH)/flash_phy_rd_buf_dep.sv \
+$(BASE_PATH)/flash_phy_prog.sv \
+$(BASE_PATH)/flash_phy_erase.sv \
+$(BASE_PATH)/flash_phy_scramble.sv \
+$(BASE_PATH)/pinmux_wkup.sv \
+$(BASE_PATH)/pinmux_jtag_buf.sv \
+$(BASE_PATH)/pinmux_jtag_breakout.sv \
+$(BASE_PATH)/pinmux_strap_sampling.sv \
+$(BASE_PATH)/pinmux.sv \
+$(BASE_PATH)/pwrmgr_cdc.sv \
+$(BASE_PATH)/pwrmgr_slow_fsm.sv \
+$(BASE_PATH)/pwrmgr_fsm.sv \
+$(BASE_PATH)/pwrmgr_wake_info.sv \
+$(BASE_PATH)/pwrmgr.sv \
+$(BASE_PATH)/csrng_reg_top.sv \
+$(BASE_PATH)/csrng_main_sm.sv \
+$(BASE_PATH)/csrng_state_db.sv \
+$(BASE_PATH)/csrng_cmd_stage.sv \
+$(BASE_PATH)/csrng_block_encrypt.sv \
+$(BASE_PATH)/csrng_ctr_drbg_cmd.sv \
+$(BASE_PATH)/csrng_ctr_drbg_upd.sv \
+$(BASE_PATH)/csrng_ctr_drbg_gen.sv \
+$(BASE_PATH)/csrng_core.sv \
+$(BASE_PATH)/csrng.sv \
+$(BASE_PATH)/entropy_src_reg_pkg.sv \
+$(BASE_PATH)/entropy_src_reg_top.sv \
+$(BASE_PATH)/entropy_src_watermark_reg.sv \
+$(BASE_PATH)/entropy_src_field_en.sv \
+$(BASE_PATH)/entropy_src_cntr_reg.sv \
+$(BASE_PATH)/entropy_src_ack_sm.sv \
+$(BASE_PATH)/entropy_src_main_sm.sv \
+$(BASE_PATH)/entropy_src_repcnt_ht.sv \
+$(BASE_PATH)/entropy_src_repcnts_ht.sv \
+$(BASE_PATH)/entropy_src_adaptp_ht.sv \
+$(BASE_PATH)/entropy_src_bucket_ht.sv \
+$(BASE_PATH)/entropy_src_markov_ht.sv \
+$(BASE_PATH)/entropy_src_enable_delay.sv \
+$(BASE_PATH)/entropy_src_core.sv \
+$(BASE_PATH)/entropy_src.sv \
+$(BASE_PATH)/kmac_pkg.sv \
+$(BASE_PATH)/sensor_ctrl_pkg.sv \
+$(BASE_PATH)/keymgr.sv \
+$(BASE_PATH)/keymgr_ctrl.sv \
+$(BASE_PATH)/keymgr_cfg_en.sv \
+$(BASE_PATH)/keymgr_data_en_state.sv \
+$(BASE_PATH)/keymgr_err.sv \
+$(BASE_PATH)/keymgr_input_checks.sv \
+$(BASE_PATH)/keymgr_kmac_if.sv \
+$(BASE_PATH)/keymgr_op_state_ctrl.sv \
+$(BASE_PATH)/keymgr_reg_top.sv \
+$(BASE_PATH)/keymgr_reseed_ctrl.sv \
+$(BASE_PATH)/keymgr_sideload_key.sv \
+$(BASE_PATH)/keymgr_sideload_key_ctrl.sv \
+$(BASE_PATH)/kmac_reg_pkg.sv \
+$(BASE_PATH)/kmac_reg_top.sv \
+$(BASE_PATH)/kmac_core.sv \
+$(BASE_PATH)/kmac_msgfifo.sv \
+$(BASE_PATH)/kmac_staterd.sv \
+$(BASE_PATH)/kmac_app.sv \
+$(BASE_PATH)/kmac_entropy.sv \
+$(BASE_PATH)/kmac_errchk.sv \
+$(BASE_PATH)/kmac.sv \
+$(BASE_PATH)/lc_ctrl_regs_reg_top.sv \
+$(BASE_PATH)/lc_ctrl_dmi_reg_top.sv \
+$(BASE_PATH)/lc_ctrl_state_decode.sv \
+$(BASE_PATH)/lc_ctrl_state_transition.sv \
+$(BASE_PATH)/lc_ctrl_signal_decode.sv \
+$(BASE_PATH)/lc_ctrl_fsm.sv \
+$(BASE_PATH)/lc_ctrl_kmac_if.sv \
+$(BASE_PATH)/lc_ctrl.sv \
+$(BASE_PATH)/rom_ctrl_regs_reg_top.sv \
+$(BASE_PATH)/rom_ctrl.sv \
+$(BASE_PATH)/rom_ctrl_compare.sv \
+$(BASE_PATH)/rom_ctrl_counter.sv \
+$(BASE_PATH)/rom_ctrl_fsm.sv \
+$(BASE_PATH)/rom_ctrl_mux.sv \
+$(BASE_PATH)/rom_ctrl_scrambled_rom.sv \
+$(BASE_PATH)/sensor_ctrl.sv \
+$(BASE_PATH)/top_earlgrey_rnd_cnst_pkg.sv \
+$(BASE_PATH)/top_earlgrey.sv \
+$(BASE_PATH)/xilinx_primitives_blackbox.v
+
+# Add include directories so Slang can find dependencies
+# export VERILOG_INCLUDE_DIRS = $(shell find $(BASE_PATH) -type d -name "rtl" | paste -sd ':')
+
+export SDC_FILE=$(DESIGN_HOME)/$(PLATFORM)/$(DESIGN_NICKNAME)/constraint.sdc
+# export SYNTH_HIERARCHICAL=1
+# export RTLMP_FLOW=1
+
+export CORE_UTILIZATION=45
+export PLACE_DENSITY_LB_ADDON=0.2
+#export TNS_END_PERCENT=100
+
+export FASTROUTE_TCL=$(DESIGN_HOME)/$(PLATFORM)/$(DESIGN_NICKNAME)/fastroute.tcl
+# export REMOVE_ABC_BUFFERS=1
+
+export VERILOG_DEFINES += -D ASSERT(a,b)=
+export VERILOG_DEFINES += -D ASSUME(a,b)=
+export VERILOG_DEFINES += -D ASSERT_INIT(a,b)=
+export VERILOG_DEFINES += -D PRIM_FLOP_SPARSE_FSM(a,b,c,d,e)=
+export VERILOG_DEFINES += -D ASSERT_KNOWN(a,b)=
+export VERILOG_DEFINES += -D ASSERT_FPV(a,b)=
+export VERILOG_DEFINES += -D ASSUME_FPV(a,b)=
+export VERILOG_DEFINES += -D ASSERT_PRIM_REG_WE_ONEHOT_ERROR_TRIGGER_ALERT(a,b,c)=
+export VERILOG_DEFINES += -D ASSERT_PRIM_ONEHOT_ERROR_TRIGGER_ALERT(a,b,c)=
+export VERILOG_DEFINES += -D ASSERT_ERROR_TRIGGER_ERR(a,b,c,d,e,f,g)=
+export VERILOG_DEFINES += -D ASSERT_PRIM_FSM_ERROR_TRIGGER_ALERT(a,b,c,d,e)=
+export VERILOG_DEFINES += -D ASSERT_DEFAULT_CLK=clk_i
+export VERILOG_DEFINES += -D ASSERT_DEFAULT_RST=rst_ni
+export VERILOG_DEFINES += -D SEC_CM_ASSERTIONS_DISABLED
+# export SYNTH_MEMORY_MAX_BITS=32768
