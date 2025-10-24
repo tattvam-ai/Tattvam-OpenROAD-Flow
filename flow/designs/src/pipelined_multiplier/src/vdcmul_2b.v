@@ -1,0 +1,28 @@
+module vdcmul_2b(
+                   x,
+                   y,
+                   prod
+                   );
+
+input [1:0] x, y;
+wire [2:0]s;
+wire [2:1]c;
+output [3:0] prod;
+
+assign s[0] = x[0] & y [0];
+assign {c[1], s[1]} = {1'b0, x[1] & y[0]} + {1'b0, x[0] & y[1]}; //middle crossing term 
+assign {c[2], s[2]} = {1'b0, c[1]} + {1'b0, x[1] & y[1]};
+assign prod = {c[2], s[2], s[1], s[0]};
+
+endmodule
+
+/* 
+Suppose x is 2, y is 3
+x = 10 (2)
+y = 11 (3)
+   10 
+   11
+ -----------
+   10
+  10 
+*/
