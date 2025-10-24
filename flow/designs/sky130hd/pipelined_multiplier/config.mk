@@ -29,4 +29,3 @@ export TNS_END_PERCENT = 100
 export FASTROUTE_TCL = $(DESIGN_HOME)/$(PLATFORM)/$(DESIGN_NICKNAME)/fastroute.tcl
 
 export REMOVE_ABC_BUFFERS = 1
-export HDL_FRONTEND = slang
