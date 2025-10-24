@@ -1,0 +1,19 @@
+{
+    "_SDC_FILE_PATH": "constraint.sdc",
+    "_SDC_CLK_PERIOD": {
+        "type": "float",
+        "minmax": [
+            1.0,
+            20.0
+        ],
+        "step": 1
+    },
+    "CORE_MARGIN": {
+        "type": "int",
+        "minmax": [
+            2,
+            50
+        ],
+        "step": 1
+    }
+}

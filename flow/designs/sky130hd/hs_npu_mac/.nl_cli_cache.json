@@ -1,0 +1,21 @@
+{
+  "modules": [
+    "hs_npu_mac"
+  ],
+  "reports_by_module": {
+    "hs_npu_mac": [
+      "/home/ubuntu/CLI_agent/OpenROAD-flow-scripts/flow/reports/sky130hd/hs_npu_mac/base/.nl_cli_cache.json",
+      "/home/ubuntu/CLI_agent/OpenROAD-flow-scripts/flow/reports/sky130hd/hs_npu_mac/base/grt_antennas.log",
+      "/home/ubuntu/CLI_agent/OpenROAD-flow-scripts/flow/reports/sky130hd/hs_npu_mac/base/drt_antennas.log",
+      "/home/ubuntu/CLI_agent/OpenROAD-flow-scripts/flow/results/sky130hd/hs_npu_mac/base/clock_period.txt"
+    ],
+    "unassigned": []
+  },
+  "all_reports": [
+    "/home/ubuntu/CLI_agent/OpenROAD-flow-scripts/flow/reports/sky130hd/hs_npu_mac/base/.nl_cli_cache.json",
+    "/home/ubuntu/CLI_agent/OpenROAD-flow-scripts/flow/reports/sky130hd/hs_npu_mac/base/grt_antennas.log",
+    "/home/ubuntu/CLI_agent/OpenROAD-flow-scripts/flow/reports/sky130hd/hs_npu_mac/base/drt_antennas.log",
+    "/home/ubuntu/CLI_agent/OpenROAD-flow-scripts/flow/results/sky130hd/hs_npu_mac/base/clock_period.txt"
+  ],
+  "generated_at": 1761171618.230827
+}
