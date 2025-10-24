@@ -83,7 +83,19 @@
 #DESIGN_CONFIG=./designs/ihp-sg13g2/i2c-gpio-expander/config.mk
 
 # Default design
-DESIGN_CONFIG ?= ./designs/nangate45/gcd/config.mk
+# DESIGN_CONFIG ?= ./designs/nangate45/gcd/config.mk
+# DESIGN_CONFIG=./designs/sky130hd/hs_npu_mac/config.mk
+# DESIGN_CONFIG=./designs/sky130hd/hs_npu_mac/config.mk
+# DESIGN_CONFIG=./designs/sky130hd/async_fifo/config.mk
+# DESIGN_CONFIG=./designs/sky130hd/clock_divider/config.mk
+# DESIGN_CONFIG=./designs/sky130hd/moore_nonoverlap/config.mk
+# DESIGN_CONFIG=./designs/sky130hd/moore_overlap/config.mk
+# DESIGN_CONFIG=./designs/sky130hd/pipelined_alu/config.mk
+# DESIGN_CONFIG=./designs/sky130hd/alu_8bit/config.mk
+# DESIGN_CONFIG=./designs/sky130hd/pipelined_multiplier/config.mk
+# DESIGN_CONFIG=./designs/sky130hd/sobel_filter/config.mk
+DESIGN_CONFIG=./designs/sky130hd/top_earlgrey/config.mk
+
 export DESIGN_CONFIG
 include $(DESIGN_CONFIG)
 
