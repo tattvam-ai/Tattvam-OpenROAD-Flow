@@ -46,4 +46,4 @@ export SYNTH_KEEP_MODULES = \
 	module_fn_logic 	
 
 export PLACE_DENSITY_LB_ADDON = 0.2
-export SYNTH_HDL_FRONTEND = slang
+#export SYNTH_HDL_FRONTEND = slang

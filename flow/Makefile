@@ -95,7 +95,7 @@
 # DESIGN_CONFIG=./designs/sky130hd/pipelined_multiplier/config.mk
 # DESIGN_CONFIG=./designs/sky130hd/sobel_filter/config.mk
 # DESIGN_CONFIG=./designs/sky130hd/top_earlgrey/config.mk
-DESIGN_CONFIG=./designs/sky130hd/mkccore_axi4/config.mk
+DESIGN_CONFIG=./designs/asap7/mkccore_axi4/config.mk
 
 export DESIGN_CONFIG
 include $(DESIGN_CONFIG)
